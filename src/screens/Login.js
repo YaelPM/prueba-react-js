@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import usersData from '../users.json';
 import '../styles/Login.css'
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const Login = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -31,17 +34,23 @@ const Login = () => {
     const user = usersData.find((user) => user.username === username && user.password === password);
 
     if (user) {
-      setError('Inicio de sesión exitoso');
+      Swal.fire({
+        title: 'Inicio de sesión exitoso!',
+        text: 'Bienvenido a la página de prueba',
+        icon: 'success',
+        confirmButtonText: 'Okey :)'
+      })
+      navigate("/Home");
     } else {
       setError('Nombre de usuario o contraseña incorrectos.');
     }
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <div className="card p-4">
+          <div className="card p-4 mt-5">
             <div className="card-body">
               <h1 className="text-center mb-4">Iniciar sesión</h1>
               <div className="form-group mb-4"> 

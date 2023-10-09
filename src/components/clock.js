@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/Clock.css'; // Importamos un archivo CSS para estilos
 
 class Clock extends Component {
   constructor(props) {
@@ -25,9 +26,13 @@ class Clock extends Component {
     const seconds = time.getSeconds();
 
     return (
-      <div>
-        <h1>Reloj en React.js</h1>
-        <p>Hora actual: {`${hours}:${minutes}:${seconds}`}</p>
+      <div className="clock-container">
+        <h1 className="clock-title">Hora actual:</h1>
+        <div className="clock">
+          <p className="clock-time">
+            {`${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`}
+          </p>
+        </div>
       </div>
     );
   }
